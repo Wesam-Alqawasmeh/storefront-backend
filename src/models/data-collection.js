@@ -14,17 +14,18 @@ class DataCollection {
   }
 
   create(record) {
-    return this.model.create(record);
+    this.model.create(record);
+    return this.model.findAll({});
   }
 
   update(id, data) {
-    return this.model
-      .findOne({ where: { id } })
-      .then((record) => record.update(data));
+    this.model.findOne({ where: { id } }).then((record) => record.update(data));
+    return this.model.findAll({});
   }
 
   delete(id) {
-    return this.model.destroy({ where: { id } });
+    this.model.destroy({ where: { id } });
+    return this.model.findAll({});
   }
 }
 
